@@ -30,7 +30,12 @@ function Signup() {
 
     } catch (error) {
       console.log(error);
-      navigate("/error");
+     
+      if (error.response && error.response.status===400){
+        setErrorMessage(error.response.data.errorMessage)
+      }else{
+        navigate("/error")
+      }
     }
   };
 
@@ -70,6 +75,7 @@ function Signup() {
         <br />
 
         <button type="submit">Signup</button>
+        {errorMessage ? <p>{errorMessage}</p> : null}
       </form>
     </div>
   );
