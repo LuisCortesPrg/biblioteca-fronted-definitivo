@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../service/service.config";
 import { useContext } from "react";
-import { AuthContext } from "../contex/auth.context";
+import { AuthContext } from "../context/auth.context";
 
 function Login() {
   const { verifyToken } = useContext(AuthContext);
@@ -28,12 +28,12 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
       verifyToken()
 
-      navigate("/privada");
+      navigate("/private");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        navigate("/error");
+        navigate("/home");
       }
     }
   };

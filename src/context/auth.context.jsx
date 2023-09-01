@@ -14,6 +14,8 @@ function AuthWrapper(props) {
   
 
   const verifyToken = async () => {
+    setIsPageLoading(true) //poner spinner
+
     try {
       const response = await service.get("/auth/verify");
       console.log(response);
@@ -23,7 +25,7 @@ function AuthWrapper(props) {
 
     } catch (error) {
       console.log(error);
-      setIsUserActive(False);
+      setIsUserActive(false);
       setActiveUserId(null);
       setIsPageLoading(false)
     }

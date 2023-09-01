@@ -9,10 +9,10 @@ service.interceptors.request.use((config)=>{
 
     const storedToken=localStorage.getItem("authToken")
     if(storedToken){
-        config.headers.Authorization= `Bearer  ~${storedToken}`
+        config.headers.authorization= `Bearer ${storedToken}`
     }
 
-
+    return config
 })
 
 
