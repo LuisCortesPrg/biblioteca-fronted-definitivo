@@ -13,7 +13,8 @@ import Coleccion from "./pages/Coleccion";
 import Gestion from "./pages/Gestion";
 import Añadir from "./pages/Añadir";
 import Busqueda from "./pages/Busqueda";
-
+import Detalles from "./pages/Detalles";
+import EditarPerfil from "./pages/EditarPerfil"
 
 function App() {
   return (
@@ -21,15 +22,17 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/home" element={<IsPrivate><Home /></IsPrivate>} />
-        <Route path="/login" element={<IsPrivate><Login /></IsPrivate>} />
-        <Route path="/signup" element={<IsPrivate><Signup /></IsPrivate>} />
-        <Route path="/private" element={<IsPrivate><Private /></IsPrivate>} />
-        <Route path="/perfil" element={<IsPrivate><Perfil /></IsPrivate>} />
-        <Route path="/coleccion" element={<IsPrivate><Coleccion /></IsPrivate>} />
-        <Route path="/gestion" element={<IsPrivate><Gestion /></IsPrivate>} /> {/*admin */}         
-        <Route path="/añadir" element={<IsPrivate><Añadir /></IsPrivate>} /> {/*admin */} 
-        <Route path="/busqueda" element={<IsPrivate><Busqueda /></IsPrivate>} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/private" element={<Private />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/editarperfil" element={<EditarPerfil />} />
+        <Route path="/coleccion" element={<Coleccion />} />
+        <Route path="/gestion" element={<Gestion />} /> {/*admin */}         
+        <Route path="/anadir" element={<Añadir />} /> {/*admin */} 
+        <Route path="/busqueda" element={<Busqueda />} />
+        <Route path="/coleccion/:id" element={<Detalles />} />
 
         <Route path="/error" element={<Error />}/>
         <Route path="/*" element={<NotFound />}/>

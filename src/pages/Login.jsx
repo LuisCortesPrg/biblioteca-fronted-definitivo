@@ -28,12 +28,12 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
       verifyToken()
 
-      navigate("/private");
+      navigate("/home");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        navigate("/home");
+        navigate("/error");
       }
     }
   };
