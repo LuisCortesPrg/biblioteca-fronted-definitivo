@@ -23,8 +23,8 @@ function Coleccion() {
       <h3>Lista de Libros</h3>
       <ul>
         {books.map((book) => (
-          <li key={book._id}>
-            <Link to={`/coleccion/${book._id}`}>{book.title}</Link>
+          <li className="listas" key={book._id}>
+            <Link  className="libros" to={`/coleccion/${book._id}`}>{book.title}</Link>
           </li>
         ))}
       </ul>

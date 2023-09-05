@@ -75,13 +75,13 @@ function Detalles() {
 
   return (
     <div>
-      <h3>Detalles del Libro</h3>
-      <p>Título: {book.title}</p>
-      <p>Descripción: {book.description}</p>
-      <p>Autor: {book.author}</p>
-      <p>Temática: {book.tematica}</p>
+      <h3><strong>Detalles del Libro</strong></h3>
+      <p><strong>Título: </strong> {book.title}</p>
+      <p><strong>Descripción:</strong>  {book.description}</p>
+      <p><strong>Autor:</strong>  {book.author}</p>
+      <p><strong>Temática: </strong> {book.tematica}</p>
       <p>
-        Prestado a: {book.isBorrowed ? book.prestamo.username : "Disponible"}
+      <strong>Prestado a: </strong> {book.isBorrowed ? book.prestamo.username : "Disponible"}
       </p>
 
       <div>
@@ -91,10 +91,23 @@ function Detalles() {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />
+        
 
-        <button onClick={agregarComentario}>Agregar Comentario</button>
+        <button className="boton" onClick={agregarComentario}>Agregar Comentario</button>
       </div>
-
+      <div>
+              {userRole === "admin" && (
+                <>
+                  <button className="boton" onClick={() => prestarLibro(book._id)}>
+                    Prestamo
+                  </button>
+                  <button className="boton" onClick={() => devolverLibro(book._id)}>
+                    Devuelto
+                  </button>
+                  <button className="cierro" onClick={borrarLibro}>Borrar Libro</button>
+                </>
+              )}
+            </div>
       <div>
         <h4>Comentarios</h4>
 
@@ -103,29 +116,17 @@ function Detalles() {
             <p>Autor: {comments.autor.username}</p>
             <p>Contenido: {comments.contenido}</p>
             {userRole === "admin" ? (
-              <button onClick={() => borrarComentario(comments._id)}>
+              <button className="boton" onClick={() => borrarComentario(comments._id)}>
                 Borrar Comentario
               </button>
             ) : (
               comments.autor._id === activeUserId && (
-                <button onClick={() => borrarComentario(comments._id)}>
+                <button className="boton" onClick={() => borrarComentario(comments._id)}>
                   Borrar Comentario
                 </button>
               )
             )}
-            <div>
-              {userRole === "admin" && (
-                <>
-                  <button onClick={() => prestarLibro(book._id)}>
-                    Prestamo
-                  </button>
-                  <button onClick={() => devolverLibro(book._id)}>
-                    Devuelto
-                  </button>
-                  <button onClick={borrarLibro}>Borrar Libro</button>
-                </>
-              )}
-            </div>
+           
           </div>
         ))}
       </div>

@@ -20,8 +20,8 @@ function App() {
   return (
     <>
       <Navbar />
-
-      <Routes>
+<div className="rutas" >
+      <Routes >
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -37,6 +37,7 @@ function App() {
         <Route path="/error" element={<Error />}/>
         <Route path="/*" element={<NotFound />}/>
       </Routes>
+      </div>
     </>
   );
 }

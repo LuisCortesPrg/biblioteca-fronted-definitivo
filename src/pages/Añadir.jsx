@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import service from "../service/service.config";
 import { useNavigate } from "react-router-dom";
 
+
 function Añadir() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
   const [tematica, setTematica] = useState("Amoroso");
   const navigate= useNavigate()
+  const [userRole, setUserRole] = useState("");
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
@@ -78,7 +80,8 @@ function Añadir() {
             <option value="Fantástico">Fantástico</option>
           </select>
         </div>
-        <button type="submit">Añadir Libro</button>
+        
+        <button className="boton" type="submit">Añadir Libro</button>
       </form>
     </div>
   );

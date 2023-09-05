@@ -44,7 +44,7 @@ function EditarPerfil() {
           name="username"
           onChange={handleUsernameChange}
           value={username}
-        /> <button type="onSubmit">Editar</button>
+        /> <button className="boton" type="onSubmit">Editar</button>
       </form>
 
      
