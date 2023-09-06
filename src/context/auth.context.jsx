@@ -7,6 +7,7 @@ function AuthWrapper(props) {
   const [isUserActive, setIsUserActive] = useState(false);
   const [activeUserId, setActiveUserId] = useState(null);
   const [isPageLoading, setIsPageLoading]=useState(true)
+  const [activeUserRole, setActiveUserRole]=useState(null)
 
   useEffect(()=>{
     verifyToken() 
@@ -22,6 +23,7 @@ function AuthWrapper(props) {
       setIsUserActive(true);
       setActiveUserId(response.data._id);
       setIsPageLoading(false)
+      setActiveUserRole(response.data.role)
 
     } catch (error) {
       console.log(error);
@@ -35,6 +37,7 @@ function AuthWrapper(props) {
     verifyToken,
     isUserActive,
     activeUserId,
+    activeUserRole
   };
 
   //clausuladeGuardia

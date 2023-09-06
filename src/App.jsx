@@ -22,17 +22,17 @@ function App() {
       <Navbar />
 <div className="rutas" >
       <Routes >
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<IsPrivate><Home /></IsPrivate>}  />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/private" element={<Private />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/editarperfil" element={<EditarPerfil />} />
-        <Route path="/coleccion" element={<Coleccion />} />
-        <Route path="/gestion" element={<Gestion />} /> {/*admin */}         
-        <Route path="/anadir" element={<Añadir />} /> {/*admin */} 
-        <Route path="/busqueda" element={<Busqueda />} />
-        <Route path="/coleccion/:id" element={<Detalles />} />
+        <Route path="/private" element={<IsPrivate><Private /></IsPrivate>} />
+        <Route path="/perfil" element={<IsPrivate><Perfil /></IsPrivate>} />
+        <Route path="/editarperfil" element={<IsPrivate><EditarPerfil /></IsPrivate>} />
+        <Route path="/coleccion" element={<IsPrivate><Coleccion /></IsPrivate>} />
+        <Route path="/gestion" element={<IsPrivate><Gestion /></IsPrivate>} /> {/*admin */}         
+        <Route path="/anadir" element={<IsPrivate><Añadir /></IsPrivate>} /> {/*admin */} 
+        <Route path="/busqueda" element={<IsPrivate><Busqueda /></IsPrivate>} />
+        <Route path="/coleccion/:id" element={<IsPrivate><Detalles /></IsPrivate>} />
 
         <Route path="/error" element={<Error />}/>
         <Route path="/*" element={<NotFound />}/>

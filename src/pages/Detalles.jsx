@@ -101,9 +101,9 @@ function Detalles() {
                   <button className="boton" onClick={() => prestarLibro(book._id)}>
                     Prestamo
                   </button>
-                  <button className="boton" onClick={() => devolverLibro(book._id)}>
+                  {/* <button className="boton" onClick={() => devolverLibro(book._id)}>
                     Devuelto
-                  </button>
+                  </button> */}
                   <button className="cierro" onClick={borrarLibro}>Borrar Libro</button>
                 </>
               )}

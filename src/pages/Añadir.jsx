@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import service from "../service/service.config";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 
 function Añadir() {
@@ -8,8 +9,10 @@ function Añadir() {
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
   const [tematica, setTematica] = useState("Amoroso");
-  const navigate= useNavigate()
-  const [userRole, setUserRole] = useState("");
+  const navigate = useNavigate();
+  
+const {activeUserRole}= useContext(AuthContext)
+
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
@@ -20,25 +23,30 @@ function Añadir() {
     e.preventDefault();
 
     try {
-      const response= await service.post("/anadir",{title, description, author, tematica} ) 
-
-
-
-
+      const response = await service.post("/anadir", {
+        title,
+        description,
+        author,
+        tematica,
+       
+      });
       
-        console.log(response)
-
-        
-      
+     
+      console.log(response);
     } catch (error) {
       console.error("Error al añadir el libro:", error);
     }
-    navigate("/coleccion")
+    navigate("/coleccion");
   };
+
+ 
 
   return (
     <div>
       <h3>Añadir Libro</h3>
+
+    {activeUserRole==="admin" ? (
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Título:</label>
@@ -66,23 +74,24 @@ function Añadir() {
             required
           />
         </div>
-        <div>
+        
           <label>Temática:</label>
-          <select
-            value={tematica}
-            onChange={handleTematicaChange}
-            required
-          >
+          <select value={tematica} onChange={handleTematicaChange} required>
             <option value="Amoroso">Amoroso</option>
             <option value="Histórico">Histórico</option>
             <option value="Aventuras">Aventuras</option>
             <option value="Policial">Policial</option>
             <option value="Fantástico">Fantástico</option>
           </select>
-        </div>
         
-        <button className="boton" type="submit">Añadir Libro</button>
+            <button className="boton" type="submit">
+              Añadir Libro
+            </button>
+         
       </form>
+    ):(
+        <p>Por favor consulte con el administrador</p>
+    )}
     </div>
   );
 }
