@@ -79,7 +79,7 @@ function Detalles() {
 
   return (
     <div>
-      <Link  className="libros" to={`/editarlibro`}>Editar</Link>
+      <Link  className="libros" to={`/editarlibro`}><button>Editar</button></Link>
       <h3><strong>Detalles del Libro</strong></h3>
       <p><strong>Título: </strong> {book.title}</p>
       <p><strong>Descripción:</strong>  {book.description}</p>
@@ -118,8 +118,8 @@ function Detalles() {
 
         {comments.map((comments) => (
           <div key={comments._id}>
-            <p>Autor: {comments.autor.username}</p>
-            <p>Contenido: {comments.contenido}</p>
+            <p><strong>Autor: </strong>{comments.autor.username}</p>
+            <p><strong>Contenido:</strong> {comments.contenido}</p>
             {userRole === "admin" ? (
               <button className="boton" onClick={() => borrarComentario(comments._id)}>
                 Borrar Comentario
