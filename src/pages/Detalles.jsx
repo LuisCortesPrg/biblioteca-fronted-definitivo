@@ -13,6 +13,7 @@ function Detalles() {
   const [newComment, setNewComment] = useState("");
   const [deleteComentario, setDeleteComentario] = useState({});
   const { activeUserId } = useContext(AuthContext);
+  
 
   useEffect(() => {
     getData();
@@ -73,8 +74,12 @@ function Detalles() {
     return <p>buscando libro</p>;
   }
 
+
+
+
   return (
     <div>
+      <Link  className="libros" to={`/editarlibro`}>Editar</Link>
       <h3><strong>Detalles del Libro</strong></h3>
       <p><strong>Título: </strong> {book.title}</p>
       <p><strong>Descripción:</strong>  {book.description}</p>
@@ -119,6 +124,7 @@ function Detalles() {
               <button className="boton" onClick={() => borrarComentario(comments._id)}>
                 Borrar Comentario
               </button>
+
             ) : (
               comments.autor._id === activeUserId && (
                 <button className="boton" onClick={() => borrarComentario(comments._id)}>
@@ -130,7 +136,7 @@ function Detalles() {
           </div>
         ))}
       </div>
-    </div>
+       </div>
   );
 }
 

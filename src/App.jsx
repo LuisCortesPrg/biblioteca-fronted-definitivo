@@ -15,6 +15,7 @@ import Añadir from "./pages/Añadir";
 import Busqueda from "./pages/Busqueda";
 import Detalles from "./pages/Detalles";
 import EditarPerfil from "./pages/EditarPerfil"
+import EditarLibro from "./pages/EditarLibro";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/anadir" element={<IsPrivate><Añadir /></IsPrivate>} /> {/*admin */} 
         <Route path="/busqueda" element={<IsPrivate><Busqueda /></IsPrivate>} />
         <Route path="/coleccion/:id" element={<IsPrivate><Detalles /></IsPrivate>} />
+        <Route path="/editarlibro" element={<IsPrivate><EditarLibro /></IsPrivate>} />
 
         <Route path="/error" element={<Error />}/>
         <Route path="/*" element={<NotFound />}/>
