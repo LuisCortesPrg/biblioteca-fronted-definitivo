@@ -17,7 +17,7 @@ function Home() {
 
   return (
     <div>
-      <h1>Bienvenido a la Biblioteca</h1>
+      <h1>Bienvenido a la Foro-Teca</h1>
       <h3>{username}</h3>
     </div>
   );
