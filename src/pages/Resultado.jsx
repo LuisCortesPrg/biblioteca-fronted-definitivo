@@ -8,22 +8,10 @@ function Resultado() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    // Paso los parámetros de consulta de la URL
-    const searchParams = new URLSearchParams(location.search);
-    const title = searchParams.get("title") || "";
-    const author = searchParams.get("author") || "";
-    const tematica = searchParams.get("tematica") || "";
+   
 
-   //solicito la informacion al servidor
-    service
-      .get(`/api/busqueda?title=${title}&author=${author}&tematica=${tematica}`)
-      .then((response) => {
-        setResults(response.data);
-      })
-      .catch((error) => {
-        console.error("Error de búsqueda", error);
-      });
-  }, [location.search]);
+   //solicito la informacion 
+  })
 
   return (
     <div>

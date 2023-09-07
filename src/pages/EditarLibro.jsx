@@ -1,8 +1,8 @@
 import React from "react";
-const router = require("express").Router();
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import service from "../services/service.config";
+import service from "../service/service.config";
+import { AuthContext } from "../context/auth.context";
 
 function EditarLibro() {
   const params = useParams();
@@ -12,7 +12,8 @@ function EditarLibro() {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [tematica, setTematica] = useState("");
-  const [userRole, setUserRole] = useState("");
+  
+  const { activeUserId, activeUserRole } = useContext(AuthContext);
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleAuthorChange = (e) => setAuthor(e.target.value);
@@ -25,12 +26,14 @@ function EditarLibro() {
 
   const getData = async () => {
     try {
+
+      console.log(params.id)
       const response = await service.get(`/editarlibro/${params.id}`);
       setTitle(response.data.title);
       setAuthor(response.data.author);
       setDescription(response.data.description);
       setTematica(response.data.tematica);
-      setUserRole(response.data.userRole);
+      
     } catch (error) {
       console.log(error);
     }
@@ -51,14 +54,14 @@ function EditarLibro() {
       navigate(`/coleccion/${params.id}`);
     } catch (error) {
       console.log(error);
-      
+      navigate("/coleccion");
     }
-    navigate("/coleccion");
+    
   };
 
   return (
     <div>
-         {userRole === "admin" ? (
+         {activeUserRole === "admin" ? (
             <>
       <h3>Editar Libro</h3>
 

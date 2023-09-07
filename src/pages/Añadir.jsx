@@ -12,7 +12,7 @@ function Añadir() {
   const navigate = useNavigate();
   
 const {activeUserRole}= useContext(AuthContext)
-
+console.log(activeUserRole)
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);

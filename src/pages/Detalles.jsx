@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import service from "../service/service.config";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { Link } from "react-router-dom";
 
 function Detalles() {
   const { id, commentId } = useParams();
@@ -9,10 +10,10 @@ function Detalles() {
   const navigate = useNavigate();
   const [book, setBook] = useState(null);
   const [comments, setComments] = useState([]);
-  const [userRole, setUserRole] = useState("");
+ 
   const [newComment, setNewComment] = useState("");
   const [deleteComentario, setDeleteComentario] = useState({});
-  const { activeUserId } = useContext(AuthContext);
+  const { activeUserId, activeUserRole } = useContext(AuthContext);
   
 
   useEffect(() => {
@@ -26,8 +27,8 @@ function Detalles() {
       setBook(response.data.book);
 
       setComments(response.data.comments); //comentarios
-      setUserRole(response.data.userRole);
-      console.log(userRole);
+      
+      
     } catch (error) {
       console.error("Error con el libro", error);
     }
@@ -79,7 +80,9 @@ function Detalles() {
 
   return (
     <div>
-      <Link  className="libros" to={`/editarlibro`}><button>Editar</button></Link>
+      <Link  className="libros" to={`/editarlibro/${id}`}>
+        <button>Editar</button>
+        </Link>
       <h3><strong>Detalles del Libro</strong></h3>
       <p><strong>Título: </strong> {book.title}</p>
       <p><strong>Descripción:</strong>  {book.description}</p>
@@ -101,7 +104,7 @@ function Detalles() {
         <button className="boton" onClick={agregarComentario}>Agregar Comentario</button>
       </div>
       <div>
-              {userRole === "admin" && (
+              {activeUserRole === "admin" && (
                 <>
                   <button className="boton" onClick={() => prestarLibro(book._id)}>
                     Prestamo
@@ -120,7 +123,7 @@ function Detalles() {
           <div key={comments._id}>
             <p><strong>Autor: </strong>{comments.autor.username}</p>
             <p><strong>Contenido:</strong> {comments.contenido}</p>
-            {userRole === "admin" ? (
+            {activeUserRole === "admin" ? (
               <button className="boton" onClick={() => borrarComentario(comments._id)}>
                 Borrar Comentario
               </button>

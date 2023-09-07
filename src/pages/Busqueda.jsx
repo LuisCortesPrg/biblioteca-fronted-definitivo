@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Busqueda() {
-
+const navigate = useNavigate();
+const [ queryInput, setQueryInput ] = useState("")
   
-  const navigate = useNavigate();
-  const [apartados, setApartados] = useState({
-    title: "",
-    author: "",
-    tematica: "",
-  });
+  
+ 
 
-  const buscarLibro = async () => {
+  const buscarLibro = async (event) => {
+setQueryInput(event.target.value)
+    
     try {
-      const response= await service.post("/anadir",{title, author, tematica} ) 
+      const response= await service.post("/busqueda",{title, author, tematica} ) 
 
       
         console.log(response)
@@ -28,35 +27,20 @@ function Busqueda() {
   
 
   const handleInputName = (e) => {
-    const { name, value } = e.target;
-    setApartados({
-      ...setApartados,
-      [name]: value,
-    });
+    
+    
   };
   const handleInputAuthor = (e) => {
-    const { author, value } = e.target;
-    setApartados({
-      ...setApartados,
-      [author]: value,
-    });
+    
+   
   };
   const handleInputTematica = (e) => {
-    const { tematica, value } = e.target;
-    setApartados({
-      ...setApartados,
-      [tematica]: value,
-    });
+    
   };
 
   
   
-// Construir la URL de búsqueda
-  const handleSearch = () => {    
-    const searchParams = new URLSearchParams(apartados);
-    const searchUrl = `/resultado?${searchParams.toString()}`;
-    navigate(searchUrl);
-  };
+
 
   return (
     <div>
