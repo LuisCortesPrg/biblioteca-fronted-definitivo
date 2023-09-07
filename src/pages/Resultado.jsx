@@ -1,10 +1,10 @@
 // Resultado.js
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import service from "../service/service.config";
 
 function Resultado() {
-  const location = useLocation();
+  
   const [results, setResults] = useState([]);
 
   useEffect(() => {

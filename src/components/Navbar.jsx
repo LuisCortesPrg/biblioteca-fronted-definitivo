@@ -33,11 +33,11 @@ function Navbar() {
             Añadir
           </Link>{" "}
           {/*admin */}
-          <Link className="linkeando" to="/gestion">
+          {/* <Link className="linkeando" to="/gestion">
             Gestion
-          </Link>
+          </Link> */}
           {/*admin */}
-          {/* <Link className="linkeando" to="/busqueda">Busqueda</Link> */}
+          <Link className="linkeando" to="/busqueda">Busqueda</Link>
           <button className="cierro" onClick={handleLogout}>
             Cerrar Sesión
           </button>
