@@ -28,7 +28,7 @@ function EditarLibro() {
     try {
 
       console.log(params.id)
-      const response = await service.get(`/editarlibro/${params.id}`);
+      const response = await service.get(`/book/editarlibro/${params.id}`);
       setTitle(response.data.title);
       setAuthor(response.data.author);
       setDescription(response.data.description);
@@ -44,7 +44,7 @@ function EditarLibro() {
    
 
     try {
-      await service.put(`/editarlibro/${params.id}`, {
+      await service.put(`/book/editarlibro/${params.id}`, {
         title,
         author,
         description,

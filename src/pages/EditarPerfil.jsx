@@ -17,7 +17,7 @@ function EditarPerfil() {
     e.preventDefault();
 
     try {
-      await service.patch(`/editarperfil`,{username}) 
+      await service.patch(`/user/editarperfil`,{username}) 
         
       
       navigate("/perfil")

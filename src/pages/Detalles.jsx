@@ -22,7 +22,7 @@ function Detalles() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`/coleccion/${id}`);
+      const response = await service.get(`/book/coleccion/${id}`);
       console.log(response.data);
       setBook(response.data.book);
 
@@ -39,7 +39,7 @@ function Detalles() {
     try {
       const nuevoComentario = newComment;
       console.log(nuevoComentario);
-      await service.post(`/coleccion/${id}`, { nuevoComentario });
+      await service.post(`/book/coleccion/${id}`, { nuevoComentario });
 
       setNewComment("");
       getData();
@@ -54,7 +54,7 @@ function Detalles() {
     
     
     try {
-      await service.delete(`/comentarios/${commentId}` );
+      await service.delete(`/book/comentarios/${commentId}` );
     
       getData(); // los comentarios sin el elimanado
     } catch (error) {
@@ -64,7 +64,7 @@ function Detalles() {
 
   const borrarLibro = async () => {
     try {
-      await service.delete(`/borrar-libro/${id}`);
+      await service.delete(`/book/borrar-libro/${id}`);
       navigate("/coleccion");
     } catch (error) {
       console.error("Error al borrar el libro", error);
@@ -106,9 +106,9 @@ function Detalles() {
       <div>
               {activeUserRole === "admin" && (
                 <>
-                  <button className="boton" onClick={() => prestarLibro(book._id)}>
+                  {/* <button className="boton" onClick={() => prestarLibro(book._id)}>
                     Prestamo
-                  </button>
+                  </button> */}
                   {/* <button className="boton" onClick={() => devolverLibro(book._id)}>
                     Devuelto
                   </button> */}

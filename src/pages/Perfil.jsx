@@ -8,7 +8,7 @@ function Perfil() {
 
   useEffect(() => {
     service
-      .get("/perfil") // lo busco aqui xq en teoria es cuando se confirma con el token
+      .get("/user/perfil") // lo busco aqui xq en teoria es cuando se confirma con el token
       .then((response) => {
         console.log(response.data);
         setUsername(response.data.userData.username);

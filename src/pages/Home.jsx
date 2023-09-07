@@ -6,7 +6,7 @@ function Home() {
 
   useEffect(() => {
    
-    service.get('/home') // lo busco aqui xq en teoria es cuando se confirma con el token
+    service.get('/user/home') // lo busco aqui xq en teoria es cuando se confirma con el token
       .then((response) => { console.log(response.data)
         setUsername(response.data.userData.username); 
       })

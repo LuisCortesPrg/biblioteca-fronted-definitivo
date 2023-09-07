@@ -11,7 +11,7 @@ function Coleccion() {
 
   const getData = async () => {
     try {
-      const response = await service.get("/coleccion");
+      const response = await service.get("/book/coleccion");
       setBooks(response.data);
     } catch (error) {
       console.error("Error al obtener la colección:", error);
