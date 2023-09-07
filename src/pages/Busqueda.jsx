@@ -6,58 +6,50 @@ function Busqueda() {
   const navigate = useNavigate();
   const [filterArrTitle, setFilterArrTitle] = useState([]);
   const [queryInput, setQueryInput] = useState("");
-  
+
   const buscarLibro = async (event) => {
-    console.log(event.target.value);
     setQueryInput(event.target.value);
 
     try {
       const response = await service.get("/book/buscarlibro");
-      console.log(response.data);
 
-      setFilterArrTitle(response.data.filter((eachBook) => {
-        if (eachBook.title.includes(queryInput) === true) {
-          return true;
-        } else {
-          return false;
-        }
-      })) 
-
-
-      console.log(filterArrTitle);
+      setFilterArrTitle(
+        response.data.filter((eachBook) =>
+          eachBook.title.includes(queryInput)
+        )
+      );
     } catch (error) {
-      console.error("Error al añadir el libro:", error);
+      console.error("Error al buscar el libro:", error);
     }
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h3>Búsqueda de Libros</h3>
       <form>
-        <div>
-          <label htmlFor="title">Título:</label>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
+            Título:
+          </label>
           <input
             type="text"
             name="title"
+            className="form-control"
             value={queryInput}
-            onChange={() => setQueryInput(event.target.value)}
+            onChange={buscarLibro}
           />
         </div>
-
-        <button type="button" onClick={buscarLibro}>
-          Buscar
-        </button>
       </form>
 
       <br />
       <div>
-        {filterArrTitle.map((book) => (
-          <li className="listas" key={book._id}>
-            <Link className="libros" to={`/coleccion/${book._id}`}>
-              {book.title}
-            </Link>
-          </li>
-        ))}
+        <ul className="list-group">
+          {filterArrTitle.map((book) => (
+            <li className="list-group-item" key={book._id}>
+              <Link to={`/coleccion/${book._id}`}>{book.title}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

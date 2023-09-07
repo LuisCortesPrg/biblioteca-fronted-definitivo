@@ -1,55 +1,49 @@
-import React from 'react'
-import { useEffect, useState } from "react";
-import service from "../service/service.config";
-import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from 'react';
-import { AuthContext } from '../context/auth.context';
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import service from '../service/service.config';
 
 function EditarPerfil() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const { id } = useParams();
   const handleUsernameChange = (e) => setUsername(e.target.value);
-  useContext(AuthContext)
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await service.patch(`/user/editarperfil`,{username}) 
-        
-      
-      navigate("/perfil")
+      await service.patch(`/user/editarperfil`, { username });
 
-      
+      navigate('/perfil');
     } catch (error) {
       console.log(error);
-      navigate("/error");
+      navigate('/error');
     }
   };
 
-
-
-
-
-
-
   return (
-    <div>
+    <div className="container">
+      <h3 className="my-4">Editar Perfil</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
-        <input
-          type="text"
-          name="username"
-          onChange={handleUsernameChange}
-          value={username}
-        /> <button className="boton" type="onSubmit">Editar</button>
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            name="username"
+            onChange={handleUsernameChange}
+            value={username}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Editar
+        </button>
       </form>
-
-     
     </div>
-  )
+  );
 }
 
-export default EditarPerfil
+export default EditarPerfil;

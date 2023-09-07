@@ -19,12 +19,14 @@ function Coleccion() {
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h3>Lista de Libros</h3>
-      <ul>
+      <ul className="list-group">
         {books.map((book) => (
-          <li className="listas" key={book._id}>
-            <Link  className="libros" to={`/coleccion/${book._id}`}>{book.title}</Link>
+          <li className="list-group-item" key={book._id}>
+            <Link to={`/coleccion/${book._id}`} className="text-decoration-none text-dark">
+              {book.title}
+            </Link>
           </li>
         ))}
       </ul>

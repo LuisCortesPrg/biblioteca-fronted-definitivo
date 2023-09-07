@@ -24,16 +24,16 @@ function Navbar() {
           </Link>
           <Link className="linkeando" to="/home">
             Home
-          </Link>{" "}
+          </Link>
+          
           <Link className="linkeando" to="/coleccion">
             Colección
           </Link>
           <Link className="linkeando" to="/anadir">
             Añadir
-          </Link>{" "}
-          <Link className="linkeando" to="/busqueda">
-            Busqueda
           </Link>
+          
+          <Link className="linkeando" to="/busqueda">Busqueda</Link>
           <button className="cierro" onClick={handleLogout}>
             Cerrar Sesión
           </button>
